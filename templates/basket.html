@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Basket
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove From Cart</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.product_description }}</td>
+                <td>{{ row.price | euro }}</td>
+                <td>{{ row.order_qty }}</td>
+                <td>{{ (row.price * row.order_qty) | euro }}</td>
+                <td>
+                    <form action="/remove" method="post">
+                        <input type="hidden" name="product_description" value="{{ row.product_description }}"/>
+                        <input type="hidden" name="product_code" value="{{ row.product_code }}"/>
+                        <input type="hidden" name="price" value="{{ row.price }}"/>
+                        <input type="number" name="items" min="0" max={{row.order_qty}} placeholder="0" style="width:50px" required>
+                        <button class="btn btn-sm btn-primary" type="submit" name="submit">-</button>
+                    </form>
+                </td>
+                </tr>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td><b>Total</b></td>
+                <td></td>
+                <td></td>
+                <td>{{ total | euro }}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

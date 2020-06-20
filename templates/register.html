@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Register
+
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" required autofocus class="form-control" name="name" placeholder="Name" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" required autofocus class="form-control" name="email" placeholder="Email" type="text">
+        </div>
+        <!--<div class="form-group">-->
+        <!--    <select name="country" class="form-control" required>-->
+        <!--        <option value="" disabled selected>Select Country</option>-->
+        <!--        {% for row in rows %}-->
+        <!--            <option>{{ 1 }}</option>-->
+        <!--        {% endfor %}-->
+        <!--    </select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <!--    <input autocomplete="off" required autofocus class="form-control" name="phone_no" placeholder="Contact Number" type="text">-->
+        <!--</div>-->
+        <div class="form-group">
+            <input autocomplete="off" required autofocus class="form-control" name="mobile" placeholder="Mobile Number" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" required autofocus class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" required autofocus class="form-control" name="confirmation" placeholder="Confirm Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}

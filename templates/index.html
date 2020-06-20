@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Add to Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+
+                <tr>
+                    <td>{{ product.product_description }}</td>
+                    <td>{{ product.price | euro}}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>
+                        <form action="/order" method="post">
+                            <input type="hidden" name="product_description" value="{{ product.product_description }}"/>
+                            <input type="hidden" name="product_code" value="{{ product.product_code }}"/>
+                            <input type="hidden" name="price" value="{{ product.price }}"/>
+                            <input type="number" name="items" min="0" max={{product.stock}} placeholder="0" style="width:50px" required>
+                            <button class="btn btn-sm btn-primary" type="submit" name="submit">Add</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
